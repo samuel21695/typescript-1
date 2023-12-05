@@ -25,5 +25,20 @@ function createComponent(element: string, props: Props, children?: string[]): st
     }
     tagParts.push(attributeString);
   }
-  
+
+  tagParts.push('>');
+
+  if (children) {
+    tagParts.push(...children);
+  }
+
+  tagParts.push(`</${element}>`);
+
+  const result = tagParts.join('');
+  return result;
 }
+
+// 사용 예시
+const myComponent = createComponent('div', {id: 'example', style: {color: 'red'} }, ['안녕하세요']);
+const root = document.getElementById('root');
+root.innerHTML = myComponent;
